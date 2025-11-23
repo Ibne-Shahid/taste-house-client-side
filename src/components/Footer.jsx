@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaTwitter, FaTiktok } from "react-icons/fa";
+import Button from "./Button";
 
 export default function Footer() {
   return (
@@ -58,12 +59,7 @@ export default function Footer() {
               placeholder="Enter your email"
               className="px-4 py-2 bg-zinc-800 border border-zinc-700 rounded focus:ring-2 focus:ring-amber-400 outline-none"
             />
-            <button
-              type="submit"
-              className="py-2 bg-amber-400 text-zinc-900 font-semibold rounded hover:bg-amber-300 transition"
-            >
-              Subscribe
-            </button>
+            <Button type="submit" className="py-2 bg-primary text-white font-semibold rounded hover:bg-amber-300 transition">Subscribe</Button>
           </form>
         </div>
 

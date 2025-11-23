@@ -34,8 +34,8 @@ export default function Navbar({ user }) {
             {!user ? (
               <>
                 <RxAvatar size={30}/>
-                <Link href="/login"><Button>Login</Button></Link>
-                <Link href="/register" className="hover:text-blue-600">Register</Link>
+                <Link href="/login"><Button className="bg-primary">Login</Button></Link>
+                <Link href="/register"><Button className="bg-secondary">Register</Button></Link>
               </>
             ) : (
               <div className="relative">
