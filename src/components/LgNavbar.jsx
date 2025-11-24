@@ -43,7 +43,7 @@ const LgNavbar = ({ navItems, pathname, SignInButton, SignUpButton, SignOutButto
                     <>
                         <RxAvatar size={32} className="opacity-75" />
                         <SignInButton mode="modal">
-                            <Button className="bg-primary hover:bg-orange-700 transition-all shadow">
+                            <Button className="bg-primary hover:bg-orange-600 transition-all shadow">
                                 Login
                             </Button>
                         </SignInButton>
@@ -81,12 +81,12 @@ const LgNavbar = ({ navItems, pathname, SignInButton, SignUpButton, SignOutButto
                                         Profile
                                     </Link>
 
-                                    <Link href="/products/add" className="block px-4 py-2 hover:bg-gray-100 transition">
-                                        Add Product
+                                    <Link href="/AddFoods" className="block px-4 py-2 hover:bg-gray-100 transition">
+                                        Add Food
                                     </Link>
 
-                                    <Link href="/products/manage" className="block px-4 py-2 hover:bg-gray-100 transition">
-                                        Manage Products
+                                    <Link href="/ManageFoods" className="block px-4 py-2 hover:bg-gray-100 transition">
+                                        Manage Foods
                                     </Link>
 
                                     <SignOutButton redirectUrl="/">
