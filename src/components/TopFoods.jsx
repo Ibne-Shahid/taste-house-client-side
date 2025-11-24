@@ -1,18 +1,23 @@
 "use client";
 import Card from '@/components/Card'
 import { useEffect, useState } from 'react';
+import Button from './Button';
+import Link from 'next/link';
 
 
 
 const TopFoods = () => {
     const [items, setItems] = useState([])
+    const [loading, SetLoading] = useState(true)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const responese = await fetch('http://localhost:3000/api/top_foods')
+                SetLoading(true)
+                const responese = await fetch('http://localhost:3000/api/foods?type=top')
                 const data = await responese.json()
-                setItems(data)    
+                setItems(data)
+                SetLoading(false)
             } catch (error) {
                 console.error("Error fetching foods:", error);
             }
@@ -20,6 +25,10 @@ const TopFoods = () => {
 
         fetchData()
     }, [])
+
+    if (loading) return <div className="flex justify-center items-center py-10">
+        <div className="w-8 h-8 border-4 border-gray-300 border-t-secondary rounded-full animate-spin"></div>
+    </div>
 
     return (
         <section className="py-16 bg-gray-50">
@@ -33,6 +42,9 @@ const TopFoods = () => {
                     {items.map((item, index) => (
                         <Card key={index} item={item}></Card>
                     ))}
+                </div>
+                <div className='flex justify-center mt-10'>
+                    <Link href='/Foods'><Button className='bg-primary hover:bg-orange-600 text-white cursor-pointer px-20'>Show All</Button></Link>
                 </div>
 
             </div>

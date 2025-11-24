@@ -5,7 +5,7 @@ import { SignUp } from "@clerk/nextjs";
 export default function Page() {
   return (
     <div className="flex justify-center items-center min-h-screen py-10">
-      <SignUp />
+      <SignUp afterSignUpUrl="/success" />
     </div>
   );
 }

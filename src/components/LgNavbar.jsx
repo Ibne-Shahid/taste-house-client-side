@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react'
 import { RxAvatar } from "react-icons/rx";
 import Button from './Button';
+import { toast } from 'react-toastify';
 
 const LgNavbar = ({ navItems, pathname, SignInButton, SignUpButton, SignOutButton, setDropdownOpen, dropdownOpen, user, isSignedIn, isLoaded }) => {
     return (
@@ -90,7 +91,7 @@ const LgNavbar = ({ navItems, pathname, SignInButton, SignUpButton, SignOutButto
                                     </Link>
 
                                     <SignOutButton redirectUrl="/">
-                                        <button className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-50 transition">
+                                        <button onClick={() => toast.success("Logged out!")} className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-50 transition">
                                             Logout
                                         </button>
                                     </SignOutButton>
