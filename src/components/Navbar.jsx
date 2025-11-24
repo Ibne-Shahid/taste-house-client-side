@@ -1,119 +1,59 @@
 "use client";
-import { RxAvatar } from "react-icons/rx";
 
 import { useState } from "react";
 import Link from "next/link";
-import Button from "./Button";
+import { usePathname } from "next/navigation";
+import {
+    useUser,
+    SignInButton,
+    SignUpButton,
+    SignOutButton,
+} from "@clerk/nextjs";
+import LgNavbar from "./LgNavbar";
+import ResponsiveNavbar from "./ResponsiveNavbar";
 
-export default function Navbar({ user }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+export default function Navbar() {
+    const { isSignedIn, user } = useUser();
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  return (
-    <nav className="bg-blue-300 shadow sticky top-0 z-50 font-sans text-white">
-      <div className="max-w-7xl mx-auto px-4">
+    const pathname = usePathname();
 
+    const navItems = [
+        { name: "Home", href: "/" },
+        { name: "Products", href: "/Products" },
+        { name: "AboutUs", href: "/AboutUs" },
+        { name: "Contact", href: "/contact" },
+    ];
 
-        <div className="flex items-center justify-between h-16">
-
-
-          <Link href="/" className="text-xl font-bold">
-            <p className="text-4xl font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent">TasteHouse</p>
-          </Link>
-
-
-          <div className="hidden lg:flex items-center space-x-6">
-            <Link href="/" className="hover:text-base-100">Home</Link>
-            <Link href="/products" className="hover:text-base-100">Products</Link>
-            <Link href="/about" className="hover:text-base-100">About</Link>
-            <Link href="/contact" className="hover:text-base-100">Contact</Link>
-          </div>
+    return (
+        <nav className="backdrop-blur-xl bg-gradient-to-r from-blue-400/80 via-blue-500/70 to-blue-600/80 shadow-lg sticky top-0 z-50 font-sans text-white border-b border-white/20">
+            <div className="max-w-7xl mx-auto px-4">
+                <div className="flex items-center justify-between h-16">
 
 
-          <div className="hidden lg:flex items-center space-x-4">
-            {!user ? (
-              <>
-                <RxAvatar size={30}/>
-                <Link href="/login"><Button className="bg-primary">Login</Button></Link>
-                <Link href="/register"><Button className="bg-secondary">Register</Button></Link>
-              </>
-            ) : (
-              <div className="relative">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center space-x-2 hover:text-blue-600"
-                >
-                  <img
-                    src={user.avatar}
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <span>{user.name}</span>
-                </button>
-
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded">
-                    <div className="p-3 border-b">
-                      <p className="font-semibold">{user.name}</p>
-                      <p className="text-sm text-gray-600">{user.email}</p>
-                    </div>
-
-                    <Link href="/products/add" className="block px-4 py-2 hover:bg-gray-100">
-                      Add Product
+                    <Link href="/" className="text-3xl font-extrabold tracking-tight">
+                        <p className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent drop-shadow-lg">
+                            TasteHouse
+                        </p>
                     </Link>
 
-                    <Link href="/products/manage" className="block px-4 py-2 hover:bg-gray-100">
-                      Manage Products
-                    </Link>
+                    {/* Navbar for LG screen */}
+                    <LgNavbar navItems={navItems} pathname={pathname} SignInButton={SignInButton} SignUpButton={SignUpButton} SignOutButton={SignOutButton} setDropdownOpen={setDropdownOpen} dropdownOpen={dropdownOpen} user={user} isSignedIn={isSignedIn}></LgNavbar>
 
-                    <button className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
-                      Logout
+
+                    <button
+                        onClick={() => setMobileOpen(!mobileOpen)}
+                        className="lg:hidden text-3xl"
+                    >
+                        ☰
                     </button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden"
-          >
-            ☰
-          </button>
-        </div>
-
-
-        {mobileOpen && (
-          <div className="lg:hidden pb-3 space-y-2">
-
-
-            {!user ? (
-              <>
-                <Link href="/login" className="block">Login</Link>
-                <Link href="/register" className="block">Register</Link>
-              </>
-            ) : (
-              <>
-                <div className="px-2 py-1 border-b">
-                  <p className="font-semibold">{user.name}</p>
-                  <p className="text-sm text-gray-600">{user.email}</p>
                 </div>
-                <Link href="/products/add" className="block">Add Product</Link>
-                <Link href="/products/manage" className="block">Manage Products</Link>
-                <button className="block text-left text-red-600">Logout</button>
-              </>
-            )}
 
+                {/* Responsive navbar for mobile and MD screens */}
+                <ResponsiveNavbar navItems={navItems} pathname={pathname} SignInButton={SignInButton} SignUpButton={SignUpButton} SignOutButton={SignOutButton} user={user} isSignedIn={isSignedIn} mobileOpen={mobileOpen}></ResponsiveNavbar>
 
-            <Link href="/" className="block">Home</Link>
-            <Link href="/products" className="block">Products</Link>
-            <Link href="/about" className="block">About</Link>
-            <Link href="/contact" className="block">Contact</Link>
-
-          </div>
-        )}
-      </div>
-    </nav>
-  );
+            </div>
+        </nav>
+    );
 }
