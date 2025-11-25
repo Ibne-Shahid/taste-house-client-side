@@ -37,3 +37,39 @@ export async function GET(request) {
     });
   }
 }
+
+export async function POST(request) {
+  try {
+    const body = await request.json();
+    const today = new Date();
+    const date = today.toISOString().split("T")[0];
+    const {title, shortDescription, fullDescription, price, priority, relevantField, imageUrl, sellerEmail, SellerUsername, category } = body
+    const newFood = {
+        title,
+        shortDescription,
+        fullDescription,
+        price,
+        date,
+        priority,
+        relevantField,
+        imageUrl,
+        sellerEmail,
+        SellerUsername,
+        category
+    }
+
+    const client = await clientPromise;
+    const db = client.db("taste_house");
+
+    const result = await db.collection("foods").insertOne(newFood);
+
+    return new Response(JSON.stringify({ message: "Food added", id: result.insertedId }), {
+      status: 201,
+    });
+
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
+  }
+}
