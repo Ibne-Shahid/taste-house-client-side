@@ -13,7 +13,7 @@ const Page = () => {
     const fetchData = async () => {
       try {
         SetLoading(true)
-        const response = await fetch("http://localhost:3000/api/foods");
+        const response = await fetch("https://taste-house.vercel.app/api/foods");
         const data = await response.json();
         setItems(data);
         SetLoading(false)
