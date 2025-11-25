@@ -9,6 +9,7 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const type = searchParams.get("type");
     const id = searchParams.get("id");
+    const email = searchParams.get("email")
 
     if (id) {
       const food = await db.collection("foods").findOne({ _id: new ObjectId(id) });
@@ -20,6 +21,11 @@ export async function GET(request) {
       }
 
       return new Response(JSON.stringify(food), { status: 200 });
+    }
+
+    if(email){
+        const foodsByEmail = await db.collection("foods").find({sellerEmail:email}).toArray()
+        return new Response(JSON.stringify(foodsByEmail), {status: 200})
     }
 
     const allFoods = await db.collection("foods").find({}).toArray();

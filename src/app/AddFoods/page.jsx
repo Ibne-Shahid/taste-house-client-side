@@ -42,7 +42,7 @@ const Page = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-orange-50 to-yellow-50 flex items-center justify-center py-10 px-4">
+    <div className="min-h-screen bg-linear-to-r from-orange-50 to-yellow-50 flex items-center justify-center py-10 px-4">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl p-8 space-y-6 border border-orange-200"
