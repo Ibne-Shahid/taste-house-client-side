@@ -28,7 +28,6 @@ export default function HowItWorks() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Header */}
       <section className="py-16 bg-white border-b">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h1 className="text-4xl font-bold text-gray-900">How It Works</h1>
@@ -39,7 +38,6 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* Steps */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
@@ -57,7 +55,6 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 bg-linear-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-6">
           <h2 className="text-3xl font-bold">Ready to Taste Something New?</h2>
