@@ -12,7 +12,7 @@ const Page = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch('http://localhost:5000/foods')
+    fetch('https://taste-house-server-side.vercel.app/foods')
     .then(res=>res.json())
     .then(data=>{
       setItems(data)
@@ -23,7 +23,7 @@ const Page = () => {
   const filteredItems = items.filter((item) => {
     const matchesSearch = item.title.toLowerCase().includes(search.toLowerCase());
     const matchesCategory =
-      category === "all" || item.category === category; // Assumes item.category exists
+      category === "all" || item.category === category;
     return matchesSearch && matchesCategory;
   });
 

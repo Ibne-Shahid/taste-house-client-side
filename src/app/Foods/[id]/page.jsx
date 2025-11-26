@@ -16,7 +16,7 @@ const Page = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/foods/${id}`);
+                const response = await fetch(`https://taste-house-server-side.vercel.app/foods/${id}`);
                 const data = await response.json();
                 setItem(data);
             } catch (err) {

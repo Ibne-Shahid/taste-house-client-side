@@ -14,7 +14,7 @@ const TopFoods = () => {
         const fetchData = async () => {
             try {
                 SetLoading(true)
-                const responese = await fetch('http://localhost:5000/topFoods')
+                const responese = await fetch('https://taste-house-server-side.vercel.app/topFoods')
                 const data = await responese.json()
                 setItems(data)
                 SetLoading(false)

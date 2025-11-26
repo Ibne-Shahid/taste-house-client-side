@@ -1,4 +1,10 @@
+"use client"
+import Link from "next/link";
+import Button from "./Button";
+import { useUser } from "@clerk/nextjs";
+
 export default function HowItWorks() {
+    const {isSignedIn} = useUser()
   const steps = [
     {
       id: 1,
@@ -63,18 +69,12 @@ export default function HowItWorks() {
           </p>
 
           <div className="mt-8 flex justify-center gap-4">
-            <a
-              href="/"
-              className="px-6 py-3 bg-white text-red-600 rounded-lg font-medium hover:bg-gray-100 transition"
-            >
-              Browse Foods
-            </a>
-            <a
-              href="/seller/sign-up"
-              className="px-6 py-3 border border-white text-white rounded-lg font-medium hover:bg-white/20 transition"
-            >
-              Become a Seller
-            </a>
+            <Link href="/Foods">
+              <Button className="bg-white text-red-600 rounded-lg font-medium hover:bg-gray-100 transition">Browse Foods</Button>
+            </Link>
+            <Link href={isSignedIn?'/AddFoods':'/sign-in'}>
+              <Button className="border border-white text-white rounded-lg font-medium hover:bg-white/20 transition">Become a Seller</Button>
+            </Link>
           </div>
         </div>
       </section>
