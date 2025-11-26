@@ -12,7 +12,7 @@ const Page = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetch('https://taste-house-server-side.vercel.app/foods')
+    fetch('https://taste-house-server-side.onrender.com/foods')
     .then(res=>res.json())
     .then(data=>{
       setItems(data)

@@ -26,7 +26,7 @@ const Page = () => {
     };
 
     try {
-      const response = await fetch("https://taste-house-server-side.vercel.app/foods", {
+      const response = await fetch("https://taste-house-server-side.onrender.com/foods", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newFood),

@@ -17,7 +17,7 @@ const ManageFoodsPage = () => {
         async function fetchFoods() {
             try {
                 setLoading(true)
-                const res = await fetch(`https://taste-house-server-side.vercel.app/foods?email=${email}`);
+                const res = await fetch(`https://taste-house-server-side.onrender.com/foods?email=${email}`);
                 const data = await res.json();
                 setFoods(data);
             } catch (error) {
@@ -37,7 +37,7 @@ const ManageFoodsPage = () => {
         if (!confirmed) return;
 
         try {
-            const res = await fetch(`https://taste-house-server-side.vercel.app/foods/${id}`, { method: "DELETE" });
+            const res = await fetch(`https://taste-house-server-side.onrender.com/foods/${id}`, { method: "DELETE" });
 
             if (res.ok) {
                 setFoods((prev) => prev.filter((item) => item._id !== id));
