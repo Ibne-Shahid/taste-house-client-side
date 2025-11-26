@@ -1,7 +1,7 @@
 # 🍽️ TasteHouse
 
 <p align="center">
-  <img src="./public//Screenshot 2025-11-26 200122.png" alt="TasteHouse Banner" width="100%" />
+  <img src="./public/Screenshot 2025-11-26 212237.png" alt="TasteHouse Banner" width="100%" />
 </p>
 
 
