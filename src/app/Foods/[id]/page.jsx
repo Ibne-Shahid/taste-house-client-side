@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { redirect, useParams } from "next/navigation";
+import {  useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
