@@ -41,6 +41,33 @@ A community-driven marketplace where anyone can sell and buy homemade foods. Tas
 - Express.js  
 - MongoDB  
 - CORS  
-- dotenv  
+- dotenv
 
+---
 
+## 💻 Local Setup
+
+Follow these steps to run **TasteHouse** locally:
+
+1. **Clone the repository** </br>
+git clone (your-repo-url) </br>
+cd taste-house-client-side
+
+2. **Install dependencies and start development server** </br>
+npm install
+
+3. **Create .env file (if needed) and add your Clerk Publishable Key** </br>
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your_publishable_key>
+CLERK_SECRET_KEY=<your_secret_key>
+
+4. **Run the development server** </br>
+npm run dev
+
+5. **Open in browser** </br>
+Visit http://localhost:3000.
+
+---
+
+## 👨‍💻 Author
+Developed by **Anas Bin Shahid**  
+Passionate about crafting modern, performance-focused, and user-friendly web applications.
