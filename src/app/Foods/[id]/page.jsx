@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import {  useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -12,6 +12,7 @@ const Page = () => {
     const { id } = useParams();
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,6 +32,35 @@ const Page = () => {
     if (loading) return <div className="flex items-center justify-center py-20">
         <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
     </div>
+
+    const handleOrder = async () => {
+
+        const orderData = {
+            foodId: item?._id,
+            foodName: item?.title,
+            price: item?.price,
+            imageUrl: item?.imageUrl,
+            relevantField: item?.relevantField,
+            category: item?.category,
+            sellerEmail: item?.sellerEmail,
+            customerEmail: user?.emailAddresses[0]?.emailAddress
+        }
+
+        try {
+            const response = await fetch("https://taste-house-server-side.onrender.com/orders", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData),
+            })
+
+            const data = await response.json();
+            toast.success(`Ordering: ${item.title}`)
+        } catch (error) {
+            toast.error( error.message);
+        }
+
+        
+    }
 
 
     if (!item) return <div className="p-10 text-center text-xl">Item not found.</div>;
@@ -138,7 +168,7 @@ const Page = () => {
                     </button>
 
                     <button
-                        onClick={() => toast.success(`Ordering: ${item.title}`)}
+                        onClick={handleOrder}
                         className="px-8 py-3 bg-primary text-white rounded-lg w-full sm:w-auto font-semibold shadow-md hover:shadow-lg hover:bg-orange-600 transition-all hover:-translate-y-1">
                         Order Now
                     </button>

@@ -91,6 +91,10 @@ const LgNavbar = ({ navItems, pathname, SignInButton, SignUpButton, SignOutButto
                                         Manage Foods
                                     </Link>
 
+                                    <Link href="/MyOrders" className="block px-4 py-2 hover:bg-gray-100 transition">
+                                        My Orders
+                                    </Link>
+
                                     <SignOutButton redirectUrl="/">
                                         <button onClick={() => toast.success("Logged out!")} className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-50 transition">
                                             Logout
