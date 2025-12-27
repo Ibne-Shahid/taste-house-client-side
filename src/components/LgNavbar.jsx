@@ -4,10 +4,12 @@ import React from 'react'
 import { RxAvatar } from "react-icons/rx";
 import Button from './Button';
 import { toast } from 'react-toastify';
+import ThemeToggle from './ThemeToggle';
 
 const LgNavbar = ({ navItems, pathname, SignInButton, SignUpButton, SignOutButton, setDropdownOpen, dropdownOpen, user, isSignedIn, isLoaded }) => {
     return (
         <div className="hidden lg:flex items-center space-x-8 text-lg">
+            <ThemeToggle />
             {navItems.map((item) => {
                 const isActive = pathname === item.href;
 
@@ -76,6 +78,8 @@ const LgNavbar = ({ navItems, pathname, SignInButton, SignUpButton, SignOutButto
                                             {user.primaryEmailAddress?.emailAddress}
                                         </p>
                                     </div>
+
+                                    
 
                                     <Link
                                         href="/user-profile"
